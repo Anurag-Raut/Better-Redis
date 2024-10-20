@@ -49,3 +49,47 @@ template <typename T> size_t Hasher<T>::HashFunction(string key) const {
 	cout << "Hash Value: " << hashValue << endl;
 	return hashValue;
 }
+
+//with b+ tree:
+// #include "../include/hasher.hpp"
+
+// template <typename T>
+// Hasher<T>::Hasher(vector<pair<size_t, shared_ptr<T>>>& vec) : ring(vec) {}
+
+// template <typename T>
+// shared_ptr<T> Hasher<T>::GetElement(string key) {
+//     size_t hashValue = HashFunction(key);
+//     for (auto& segmentPair : ring) {
+//         if (segmentPair.first >= hashValue) {
+//             return segmentPair.second;
+//         }
+//     }
+//     return ring.front().second; // Default to the first segment if none found
+// }
+
+// template <typename T>
+// void Hasher<T>::AddElement() {
+//     size_t newHashValue = ring.size(); // New segment gets the next hash value
+//     ring.push_back({newHashValue, make_shared<T>()});
+// }
+
+// template <typename T>
+// void Hasher<T>::HandleSplit(shared_ptr<T> segment, vector<pair<string, string>> splitPairs) {
+//     // Create a new segment to hold the split keys
+//     AddElement();
+//     auto newSegment = ring.back().second;
+
+//     // Redistribute the keys from the split
+//     for (const auto& pair : splitPairs) {
+//         newSegment->Put(pair.first, pair.second);
+//     }
+
+//     // Update the hasher's mapping
+//     cout << "New segment added after split with hash value: " << ring.back().first << endl;
+// }
+
+// template <typename T>
+// size_t Hasher<T>::HashFunction(string key) const {
+//     hash<string> hasher;
+//     return hasher(key) % ring.size(); // Simple hash mod ring size
+// }
