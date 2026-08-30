@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Database::Database(int noOfShards = thread::hardware_concurrency()) {
+Database::Database(int noOfShards) {
 	this->noOfShards = noOfShards;
 	cout << "NO OF SHARDS: " << noOfShards << endl;
 	for (int i = 0; i < noOfShards; i++) {
